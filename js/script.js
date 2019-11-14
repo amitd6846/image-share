@@ -25,42 +25,29 @@ $('.slick_slider').slick({
         }
     ]
 });
-
-function myfun() {
-    document.getElementById("output").innerHTML = "Hello There";
-    // document.getElementById("demo").innerHTML = "Paragraph changed.";
-
+function socialWindow(url) {
+    var left = (screen.width - 570) / 2;
+    var top = (screen.height - 570) / 2;
+    var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
+    window.open(url,"NewWindow",params);
 }
 
-function myfun2() {
-    document.getElementById("output").innerHTML = "Hello There 2";
+function setShareLinks() {
+    var pageUrl = encodeURIComponent(document.URL);
+    var tweet = encodeURIComponent(jQuery("meta[property='og:description']").attr("content"));
+    
+    jQuery(".social-share.facebook").on("click", function() {
+        url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
+        socialWindow(url);
+    });
+
+    jQuery(".social-share.twitter").on("click", function() {
+        url = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + tweet;
+        socialWindow(url);
+    });
+
+    jQuery(".social-share.linkedin").on("click", function() {
+        url = "https://www.linkedin.com/shareArticle?mini=true&url=" + pageUrl;
+        socialWindow(url);
+    })
 }
-
-function mycal(a1, a2) {
-    return a1 + a2;
-}
-// array
-// var myary = ["amit", "pooja", "arnav", "kavita", "kalyani"]
-var fruits = ["HTML", "CSS", "JavaScript", "SQL", "Python", "PHP", "jQuery", "Bootstrap", "XML"];
-
-
-
-
-// document.getElementById("demo").innerHTML = fruits.constructor;
-
-
-// EncodeURL & DecodeURL
-// var myurl = window.location.href;
-// var enco = encodeURI(myurl);
-// var deco = decodeURI(enco);
-// var res = "Encoded URI: " + enco + " <br> " + " Decoded URI: " + deco;
-
-// Eval() function
-// var x = 10;
-// var y = 20;
-// var a = eval("x * y") + "<br>";
-// var b = eval("x + y + 2.5") + "<br>";
-// var c = eval("y / x * 100 / 10 *555");
-// var res = a + b + c;
-document.getElementById("output").innerHTML = fruits.length;
-console.log(fruits.length);
